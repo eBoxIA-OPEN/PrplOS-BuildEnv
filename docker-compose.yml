@@ -1,0 +1,22 @@
+# $Id: docker-compose.yml,v 1.2 2022/06/20 16:31:15 bibi Exp $
+
+version: '3'
+
+services:
+
+  #
+  # for hostname bernet.freeddns.org
+  #	
+  tmp_remote-gate:
+    build: .
+    image: openwrt-builder
+    container_name: openwrt-builder
+    environment:
+      - TMPDIR=/tmp
+      - TZ=Europe/Paris
+    tmpfs:
+      - /tmp
+    volumes:
+      - ./openwrt/:/openwrt/
+    tty: true
+    command: /bin/bash
